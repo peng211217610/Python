@@ -1,0 +1,83 @@
+
+
+#获取浏览器的所有cookies
+driver.get_cookies()
+
+
+
+#刷新当前页面
+driver.refresh()
+
+
+
+
+
+
+By ID
+By Name
+By Class Name，
+By Tag Name
+By Link Text
+By Partial Link Text
+By CSS                     find_elements_by_css_selector
+By XPath
+
+
+
+通过class定位的时候，如果class用空格隔开多个值，不要用find_elements_by_class_name，可以用find_element_by_css_selector
+例如：ele = driver.find_elements_by_css_selector("[class='btn btn-success']")    备注：请注意用法，双引号里列表，列表里class=，此外这个获取到的是列表。
+
+
+
+
+
+输入内容ele.send_keys('ddddd')
+
+清除内容element.clear()
+
+#对元素输入松勤并点击
+ele.send_keys('su').click()
+
+
+点击按钮click()
+
+
+
+
+
+
+
+
+
+
+
+
+#关闭浏览器，不关闭driver对象
+driver.close()
+
+#关闭浏览器，并关闭driver对象
+driver.quit()
+
+
+
+
+获取元素属性
+get_attribute('class')
+
+整个元素的内容，这是个字符串
+get_attribute('outerHTML')
+
+#元素去掉头部以后的字符串
+get_attribute('innerHTML')
+
+
+获取文本值
+ele.text
+
+隐式等待(全局)
+driver.implicitly_wait(10)
+
+显式等待（局部）
+w
+
+

@@ -1,0 +1,49 @@
+#topbg {
+    background: url(../images/top_bgno.jpg) no-repeat center center;
+    height: 166px;
+    width: 100%;
+}
+
+#logo {
+    margin-top: 45px;
+}
+.item img {
+    margin: 0 auto;
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    background: rgba(166, 0, 0, 0.4);
+}
+
+.carousel-indicators {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 5;
+    margin: 0;
+}
+
+.lanmu {
+    margin: 10px;
+}
+
+.nav-tabs>li>a {
+	/*导航项的背景色和前景色*/
+    background: #CCCCFF;
+    color: #fff;
+}
+
+.tab-content {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.tab-pane {
+    line-height: 1.8em;
+}
