@@ -3,7 +3,7 @@
 #备注
 remark = '''打开电影天堂首页'''
 import pytest
-from Function.Project.function_dytt_login import *
+
 
 
 #变量

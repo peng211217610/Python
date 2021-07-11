@@ -15,7 +15,8 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver import Remote
 from selenium.webdriver.chrome import options
 from selenium.common.exceptions import InvalidArgumentException
-
+import win32com.client
+import pyautogui
 
 #重写remote类，一次执行使用同一个session
 class ReuseChrome(Remote):
@@ -43,6 +44,7 @@ class ReuseChrome(Remote):
 
 #选择浏览器，并对浏览器做初始化设置
 def get_driver(browser_choice):
+    global driver
     if browser_choice == "Chrome":
         options = webdriver.ChromeOptions()
         options.add_experimental_option('w3c', False)
@@ -54,12 +56,11 @@ def get_driver(browser_choice):
     executor_url = init_driver.command_executor._url
     session_id = init_driver.session_id
     driver = ReuseChrome(command_executor=executor_url, session_id=session_id)
-    driver.implicitly_wait(10)
-    driver.maximize_window()
     return driver
 
 driver=get_driver(browser_choice)
-
+driver.implicitly_wait(15)
+driver.maximize_window()
 
 #句柄相关操作
 handle=driver.current_window_handle#获取初始句柄

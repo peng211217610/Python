@@ -3,25 +3,12 @@
 #备注
 remark = '''首页的一些操作'''
 
-#变量
-
-
-
 #引入相关包
-from Function.Project.function_dytt_login import *
-from Function.Common.common_function import *
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-import pyautogui
-import win32com.client
-
+from Function.Common.function_init_webdriver import *
 
 
 def open_homepage_click_newest_movie():
-    open_url(r'https://www.dytt8.net/')
+    driver(r'https://www.dytt8.net/')
     driver.implicitly_wait(10)
     #这网站有广告，先点一下，再关闭这个窗口
     handle = driver.current_window_handle
@@ -75,7 +62,7 @@ def open_homepage_click_newest_movie():
 
 
 
-    close_url('quit')
+    driver.quit()
 
 
 

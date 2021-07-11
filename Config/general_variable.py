@@ -4,22 +4,16 @@
 remark = '''基础配置'''
 
 #引入相关包
-import os,sys,time,shutil,json
-from random import randint,choice,uniform
-import pytest,pytest_html,pytest_parallel,pytest_rerunfailures
-from Function.Common.function_common import myTime
-
-#selenium驱动地址
-ChromeDriver_path = r'D:\TDdownload\Document\Python\chromedriver.exe'
-FirefoxDriver_path = r'D:\TDdownload\Document\Python\geckodriver.exe'
+from Function.Common.function_common import *
 
 #JS操作滚动条位置
 up="document.documentElement.scrollTop=0"
 middle="document.documentElement.scrollTop=1500"
 down="document.documentElement.scrollTop=10000"
 
-#时间戳
+#时间戳(int型)
 now_time=myTime().mytimestamp()
+mytimestamp=str(now_time)
 
 #Linux远程主机登陆地址
 #remoteServer = ('192.168.145.128',22,'root','huawei')
@@ -33,14 +27,9 @@ mysqlInfo = json.loads('''{"host":"XXXX","port":3306,"user":"dbAdmin","passwd":"
 oracleInfo = 'phm/Winovs12@192.168.145.130:1521/orcl'
 
 #常用文件夹地址
-python_dir = r'D:\TDdownload\Document\Python'
+python_dir = get_python_dir()
+td_dir=os.path.dirname(os.path.dirname(python_dir))
 
-#接口常用
-#【谷歌浏览器】User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
-headers = {
-    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0',
-    'Content-Type': 'application/x-www-form-urlencoded',
-}
 
 #字符变量
 greece="αβγδεζηθι ℩κλμνξοπρφχψω"

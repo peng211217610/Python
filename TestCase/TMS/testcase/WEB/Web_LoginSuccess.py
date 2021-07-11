@@ -25,7 +25,7 @@ class login:
     def login(self):
         #设置driver为global变量，才可以使该方法执行完以后，driver不退出。
         global driver
-        driver = webdriver.Chrome(cfg.ChromeDriver_path)
+        driver = webdriver.Chrome()
         driver.get(url)
         ele = driver.find_element_by_id('username')
         ele.clear()

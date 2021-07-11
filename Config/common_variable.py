@@ -11,6 +11,8 @@ from Function.Common.function_common import *
 #浏览器选择(Chrome、Firefox、Ie)
 browser_choice="Chrome"
 
+#谷歌浏览器可执行文件所在路径
+chromepath=r'C:\Program Files\Google\Chrome\Application\chrome.exe'
 
 input_str='aaa'
 
