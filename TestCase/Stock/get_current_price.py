@@ -57,10 +57,15 @@ ts_code_with_price = get_my_stock_list_with_latest_price()
 
 output_list = []
 for one in my_stock_list:
+    #正常情况下，基金以下跌4%，股票以下跌6%补仓，下跌比例加sold_out_plus作为卖出的幅度。
+    #当持仓较重且当前大盘已在高位时，需要减仓，所以调高补仓的门槛，调低卖出的门槛
+    #当持仓金额不足,1500，可以设置虚拟成交，实际不卖出，但excel上标记卖出价
+    # default_rate = 0.04 if one[1] == '基金' else 0.06
+    # sold_out_plus = 0.05
+    default_rate = 0.07 if one[1] == '基金' else 0.09
+    sold_out_plus = 0.05
 
-    default_rate = 0.04 if one[1] == '基金' else 0.06
-
-    actual_rate = default_rate if one[9] == '' else float(one[9])
+    actual_rate = default_rate if one[9] == '' else float(one[9])+0.03
 
     #交易的数量，对应excel第9列
     transaction_amount = 1 if one[8] == '' or abs(int(one[8]))<=1 else int(one[8])
@@ -68,18 +73,18 @@ for one in my_stock_list:
     item_index = int(one[0])
     name = one[2]
     current_price = one[4] if one[4] != '' else 10000.0
+    #获取低价（买入价）
     if one[5] == '':
-        # #如果one[9]等于11%，代表这只股在卖出临界点，以10%涨幅卖出，以下跌6%补仓
-        # low_price_rate=0.06 if one[9] == 0.11 else actual_rate
         low_price = round(current_price * (1 - actual_rate), 3)
     else:
         low_price = one[5]
+    #获取高价（卖出价）
     if one[6] == '':
         # print(type(current_price))
         # print(current_price)
         # print(one)
         # high_price_rate=0.15 if one[9] == 0.11 else actual_rate
-        high_price = round(current_price * (1 + actual_rate + 0.05), 3)
+        high_price = round(current_price * (1 + actual_rate + sold_out_plus), 3)
     else:
         high_price = one[6]
     today_price = current_price if one[3] == '' else ts_code_with_price[one[3]]
@@ -123,7 +128,7 @@ if len(buy_list) > 0:
 if len(sale_list) > 0:
     for one in sale_list:
         sale_amount = 1*1000 if abs(int(one[3]))<=1 else abs(int(one[3]))*1000
-        print(['卖出', one[0], one[1], one[2], one[-1],int(sale_amount/(one[-1]*100)*100)])
+        print(['卖出', one[0], one[1], one[2], one[-1],int(sale_amount/(one[-1]*100))*100])
 
 #---------------------------------------------------------------------------------------------------------仓位控制计算公式
 '''

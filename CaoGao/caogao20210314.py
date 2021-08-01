@@ -8,7 +8,7 @@ from Function.Common.function_common import  *
 from Function.Common.function_common import *
 
 
-all_values_list=get_all_values_from_csv('pro_bar')
+all_values_list=CSV().get_all_values_from_csv('pro_bar')
 
 
 

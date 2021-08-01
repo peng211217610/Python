@@ -15,7 +15,7 @@ if not os.path.exists(os.getcwd()):
 #创建文件夹
 #
 
-
+'''https://www.cnblogs.com/yuxc/archive/2011/08/01/2124012.html'''
 
 list = ['1','2','3','4']
 

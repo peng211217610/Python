@@ -4,8 +4,8 @@
 remark = '''初始化webdriver，驱动放在：C:\Myprograms\Y-qita\Python，设置PYTHONPATH，D:\TDdownload\Document\Python'''
 
 #引入相关包
-from selenium import webdriver
 from Config.common_variable import *
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
@@ -15,8 +15,6 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver import Remote
 from selenium.webdriver.chrome import options
 from selenium.common.exceptions import InvalidArgumentException
-import win32com.client
-import pyautogui
 
 #重写remote类，一次执行使用同一个session
 class ReuseChrome(Remote):
@@ -42,50 +40,88 @@ class ReuseChrome(Remote):
         self.w3c = False
 
 
-#选择浏览器，并对浏览器做初始化设置
-def get_driver(browser_choice):
+#选择浏览器并对浏览器做设置
+def init_webdriver(browser_choice):
     global driver
     if browser_choice == "Chrome":
         options = webdriver.ChromeOptions()
         options.add_experimental_option('w3c', False)
-        init_driver = webdriver.Chrome(options=options)
+        # options.add_argument(r'--user-data-dir=C:\User\pwx1049557\AppData\Local\Google\Chrome\User Data\automation')#加载用户数据
+        options.add_experimental_option("excludeSwitches",['enable-automation'])#禁用浏览器正在被自动化程序控制的提示
+        # options.add_argument("--disable-popup-blocking")
+        # options.add_argument("no-default-browser-check")
+        # options.add_argument("no-sandbox")
+        options.add_experimental_option("prefs",{"credentials_enable_service":False,"profile.password_manager_enabled":False})#关闭保存密码提示框
+        #使用已打开的浏览器操作
+        # options.add_experimental_option("debuggerAddress","127.0.0.1:8881")
+        driver = webdriver.Chrome(options=options)
     elif browser_choice == "Firefox":
-        init_driver = webdriver.Firefox()
+        driver = webdriver.Firefox()
     else:
-        init_driver = webdriver.Ie()
-    executor_url = init_driver.command_executor._url
-    session_id = init_driver.session_id
-    driver = ReuseChrome(command_executor=executor_url, session_id=session_id)
+        driver = webdriver.Ie()
     return driver
 
-driver=get_driver(browser_choice)
-driver.implicitly_wait(15)
+open_browser = init_webdriver(browser_choice)
+executor_url = open_browser.command_executor._url
+session_id = open_browser.session_id
+driver = ReuseChrome(executor_url,session_id)
 driver.maximize_window()
+driver.implicitly_wait(25)
+
 
 #句柄相关操作
 handle=driver.current_window_handle#获取初始句柄
-class myhandle():
+class Handle():
 
     def __init__(self):
         pass
 
     # 切换到最新的句柄
     def switch_to_the_latest_handle(self):
-        pass
+        handles = driver.window_handles
+        driver.switch_to.window(handles[-1])
 
     # 打开新窗口并切换到最新的句柄
     def open_window_and_switch_to_the_latest_handle(self):
-        pass
+        driver.execute_script('window.open()')
+        handles = driver.window_handles
+        driver.switch_to.window(handles[-1])
 
-    # 关闭当前窗口并切换到最新的句柄
+    # 关闭当前窗口并切换到最新窗口，并把最新窗口设置为初始窗口
     def close_current_window_and_switch_to_the_latest_handle(self):
-        pass
+        global handle
+        handles = driver.window_handles
+        for one in handles:
+            driver.switch_to.window(one)
+            if one != handles[-1]:
+                driver.close()
+            else:
+                handle = driver.current_window_handle
 
     # 关闭当前窗口并返回初始句柄
     def close_current_window_and_swtich_back_to_initial_handle(self):
-        pass
+        handles = driver.window_handles
+        [driver.close() for one in handles if one != handle]
+        driver.switch_to.window(handle)
 
+    # 关闭当前操作窗口并切换到跳转之前的窗口
+    def close_current_window_and_switch_back_to_former_handle(self,former_handle):
+        handles = driver.window_handles
+        [driver.close() for one in handles if one != handle]
+        driver.switch_to.window(former_handle)
 
+    # 打开多个空白窗口
+    def open_new_handle(self,i):
+        one = 1
+        while one <= i:
+            self.switch_to_the_latest_handle()
+            driver.execute_script('window.open()')
+            one += 1
+
+#谷歌页面提示“您的连接不是私密连接”
+def chrome_you_link_not_privite():
+    driver.find_element_by_xpath('//button[contains(text(),"高级")]').click()
+    driver.find_element_by_xpath('//a[@id="proceed-link"]').click()
 
 
 
