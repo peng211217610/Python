@@ -52,6 +52,11 @@ class myTime:
 
 
 '''鼠标与键盘相关操作'''
+class keyboard:
+
+    def __init__(self):
+        pass
+
 
 
 
