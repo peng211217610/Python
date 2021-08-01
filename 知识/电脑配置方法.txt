@@ -1,0 +1,44 @@
+1、安装完电脑
+2、打开浏览器，设置下载地址
+2、联网，安装驱动（否则可能显卡无驱动，其他显示器无法显示），修改360驱动大师下载路径为缓存-驱动
+3、激活Windows
+4、创建Myprograms目录，将需要安装程序的路径准备好
+5、安装office，激活office
+输入K3RCC-TNBWP-39HBT-6CPV3-FM7PT
+office激活方式：安装好了左下角菜单栏找下word打开---点空白页进去---左上角文件点击---点账户---点激活产品输入产品密钥，有出现激活向导选电话激活发给客服
+                 不懂的话拍照联系下客服
+选电话激活 电话页面 步骤2的九组数字发我激活 一起发我 每组中间空格下 （截图的话图片要清晰）
+阿里旺旺联系：织梦数码科技
+设置OneNote缓存位置：（D:/缓存/onenote）
+
+5、登录edge，会自动安装插件
+登录lastpass，这个是跟电脑绑定的，如果换电脑的话到邮箱中确认（账号密码修改一下，这个账号是邮箱地址）
+6、安装搜狗输入法并登录
+7、任务栏设置，去掉cortana和任务视图，设置时间格式（周日为第一天），取消右下角消息
+8、安装网易云音乐，登录，设置下载和缓存地址
+9、安装jdk（Oracle账号密码：peng211217610@163.com Websmap123@）
+C:\Program Files\Java\jdk1.8.0_291\
+JAVA_HOME
+C:\Program Files\Java\jdk1.8.0_144
+CLASSPASS
+%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
+path
+%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
+10、安装百度云（登录、设置下载地址）
+https://www.zhihu.com/question/264785126
+11、安装Python
+pip freeze > requirements.txt
+pip install -r requirement.txt
+修改镜像源：
+12、下载Pycharm
+13、下载idea
+14、下载Chrome
+15、安装qq
+16、设置文件资源管理器，自动定位到“此电脑”而不是“快速访问”
+
+
+
+
+
+
+
