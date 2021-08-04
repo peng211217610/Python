@@ -51,11 +51,34 @@ class myTime:
 
 
 
-'''鼠标与键盘相关操作'''
+'''键盘相关操作'''
 class keyboard:
 
     def __init__(self):
         pass
+
+    #ctrl+Q截图(用pillow代替，该功能暂时不用)
+    def ctrl_and_Q(self):
+        win32api.keybd_event(17, 0, 0, 0)
+        win32api.keybd_event(81, 0, 0, 0)
+        win32api.keybd_event(81, 0, win32con.KEYEVENTF_KEYUP, 0)
+        win32api.keybd_event(17, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+
+
+'''鼠标相关操作'''
+class mouse:
+
+    def __init__(self):
+        pass
+
+    #按下鼠标左键移动到特定位置放开
+    def mouseDown_move_to_position_then_mouseUp(self,begin,after):
+        pyautogui.mouseDown(x=begin[0], y=begin[1], button='left')
+        pyautogui.mouseUp(x=2745, y=778, button='left', duration=1)
+
+
+
 
 
 
