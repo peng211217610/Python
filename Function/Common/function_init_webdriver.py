@@ -4,7 +4,7 @@
 remark = '''初始化webdriver，驱动放在：C:\Myprograms\Y-qita\Python，设置PYTHONPATH，D:\TDdownload\Document\Python'''
 
 #引入相关包
-from Config.common_variable import *
+from Function.Oppty.function_oppty_common import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -47,12 +47,13 @@ def init_webdriver(browser_choice):
     if browser_choice == "Chrome":
         options = webdriver.ChromeOptions()
         options.add_experimental_option('w3c', False)
-        # options.add_argument(r'--user-data-dir=C:\User\pwx1049557\AppData\Local\Google\Chrome\User Data\automation')#加载用户数据
+        # options.add_argument(r'--user-data-dir=C:\Users\xx\AppData\Local\Google\Chrome\User Data')#加载用户数据
+        # options.add_argument(r'--user-data-dir=C:\Users\xx\AppData\Local\Google\Chrome\User Data2')#加载用户数据
         options.add_experimental_option("excludeSwitches",['enable-automation'])#禁用浏览器正在被自动化程序控制的提示
         # options.add_argument("--disable-popup-blocking")
         # options.add_argument("no-default-browser-check")
         # options.add_argument("no-sandbox")
-        options.add_experimental_option("prefs",{"credentials_enable_service":False,"profile.password_manager_enabled":False})#关闭保存密码提示框
+        options.add_experimental_option("prefs",{"credentials_enable_service":False,"profile.password_manager_enabled":False,"download.default_directory":r"E:\TDdownload\下载"})#关闭保存密码提示框,#设置下载地址
         #使用已打开的浏览器操作
         # options.add_experimental_option("debuggerAddress","127.0.0.1:8881")
         driver = webdriver.Chrome(options=options)
@@ -62,12 +63,13 @@ def init_webdriver(browser_choice):
         driver = webdriver.Ie()
     return driver
 
+
 open_browser = init_webdriver(browser_choice)
 executor_url = open_browser.command_executor._url
 session_id = open_browser.session_id
 driver = ReuseChrome(executor_url,session_id)
 driver.maximize_window()
-driver.implicitly_wait(25)
+driver.implicitly_wait(10)
 
 
 #句柄相关操作
@@ -90,7 +92,7 @@ class Handle():
 
     # 关闭当前窗口并切换到最新窗口，并把最新窗口设置为初始窗口
     def close_current_window_and_switch_to_the_latest_handle(self):
-        global handle
+        # global handle
         handles = driver.window_handles
         for one in handles:
             driver.switch_to.window(one)
@@ -108,7 +110,7 @@ class Handle():
     # 关闭当前操作窗口并切换到跳转之前的窗口
     def close_current_window_and_switch_back_to_former_handle(self,former_handle):
         handles = driver.window_handles
-        [driver.close() for one in handles if one != handle]
+        [driver.close() for one in handles if one != former_handle]
         driver.switch_to.window(former_handle)
 
     # 打开多个空白窗口

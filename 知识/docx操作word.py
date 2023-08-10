@@ -122,6 +122,45 @@ win32api.keybd_event(13, 0, win32con.KEYEVENTF_KEYUP, 0)
 # except:
 #     pass
 
+doc = Document(r'E:\TDdownload\aaa.docx')
+doc.paragraphs[0].text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
