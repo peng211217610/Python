@@ -22,6 +22,6 @@ Function/Page/function_page_BasePage.py，Web自动化的基础封装，主要�
 
 Function/Oppty/function_pytest_common.py，使用pytest组装用例，统一以此为入口
 
-Python/TestCase/HW就是测试脚本所在的路径，划分api和ui，conftest里配置前置和后置操作，pytest.ini我没上传到仓库来，需要自己配置
+Python/TestCase/HW就是测试脚本所在的路径，划分api和ui，conftest里配置前置和后置操作，pytest.ini我没上传到仓库来，需要自己配置，其他例如Report，截图，日志等文件夹或文件没有上传上来。因为涉及具体项目，不方便上传。
 
 Python/知识/知识汇总是我的学习笔记，这个才是我要表达的重点。其中又以Web UI自动化，MySQL查询，Locust性能，数据结构与算法为重点。
