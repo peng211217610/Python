@@ -1861,9 +1861,9 @@ class ThirdpartApi:
         #引入库
         from aip import AipOcr
         aip_config={
-            'appId': '15835934',
-            'apiKey': '8xIVBewH3VHYABGGN58ikBKd',
-            'secretKey': 'ZrfNRQKlRzgxHsV4ncX1QVEwTGjL1xaK'
+            'appId': 'xxxx',
+            'apiKey': 'xxxxxx',
+            'secretKey': 'xxxxxxxxx'
         }
         client = AipOcr(**aip_config)
         #读取验证码图片信息,screenImg是图片地址
